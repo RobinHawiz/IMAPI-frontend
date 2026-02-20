@@ -37,6 +37,9 @@
   --shadow-accent-color: hsl(55deg 100% 50% / 0.3);
   --shadow-accent-blur-low: 0px 0px 10px var(--shadow-accent-color);
   --shadow-accent-blur-high: 0px 0px 20px var(--shadow-accent-color);
+
+  /* Breakpoints */
+  --breakpoint-xs: 480px;
 }
 
 @utility flex-center {

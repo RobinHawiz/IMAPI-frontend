@@ -1,10 +1,13 @@
+import { useNavigate } from "react-router-dom";
+import Search from "@components/Search";
 import hero from "@images/hero.webp";
-import search from "@images/search.svg";
 import film from "@images/film.svg";
 import star from "@images/star.svg";
 import discussion from "@images/discussion.svg";
 
 export function Component() {
+  const navigate = useNavigate();
+
   return (
     <>
       <section className="flex-center flex-col px-4">
@@ -19,26 +22,11 @@ export function Component() {
         <p className="text-muted mb-5 text-center text-lg sm:mb-10 md:text-xl">
           Browse, rate, and review films fetched live from TMDb.
         </p>
-        <form className="flex-center mb-10 w-full flex-wrap gap-x-4 gap-y-6 sm:mb-15">
-          <div className="relative w-full max-w-150 grow basis-90">
-            <img
-              className="absolute top-1/2 left-6 -translate-1/2 sm:left-8"
-              src={search}
-              aria-hidden="true"
-            />
-            <input
-              className="border-muted shadow-elevation-low focus:border-accent w-full rounded-full border-2 border-solid px-10 py-4 text-sm transition-colors duration-200 focus:outline-none sm:px-14 sm:text-base"
-              type="text"
-              placeholder="Search through thousands of movies..."
-            />
-          </div>
-          <button
-            className="shadow-accent-blur-low text-primary bg-accent hover:shadow-accent-blur-high hover:bg-accent-muted cursor-pointer rounded-full px-10 py-4 text-sm font-bold transition-all duration-200 sm:text-base"
-            onClick={() => {}}
-          >
-            Search
-          </button>
-        </form>
+        <Search
+          onSearch={(searchTerm: string) => {
+            navigate(`/movies?query=${encodeURIComponent(searchTerm)}`);
+          }}
+        />
         <div className="flex-center w-full flex-wrap gap-8">
           <article className="bg-subtle/5 shadow-elevation-low border-subtle/20 hover:border-accent/30 hover:bg-accent/2 flex w-full max-w-95 grow basis-62 items-center gap-4 rounded-3xl border border-solid p-8 transition-colors duration-200">
             <div className="bg-accent/20 flex-center h-16 w-16 rounded-2xl">

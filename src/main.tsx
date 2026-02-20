@@ -16,6 +16,12 @@ const router = createBrowserRouter([
         lazy: () => import("@routes/public/home/Page"),
         hydrateFallbackElement: <></>,
       },
+      {
+        path: "/movies",
+        index: true,
+        lazy: () => import("@routes/public/movies/Page"),
+        hydrateFallbackElement: <></>,
+      },
     ],
   },
 ]);
