@@ -1,7 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { moviePageQueryOptions } from "@hooks/queryOptions";
-import SpinnerBig from "@components/SpinnerBig";
 import MovieCard from "@routes/public/movies/components/MovieCard";
 
 function MoviePage() {
@@ -19,7 +18,7 @@ function MoviePage() {
       </h1>
       {isFetching ? (
         <div className="flex-center mt-2 flex-col sm:mt-6 md:mt-8">
-          <SpinnerBig />
+          <span className="loading loading-spinner text-accent w-10 md:w-20"></span>
           <p className="text-accent mt-5 block self-end text-sm sm:text-base">
             Loading Movies...
           </p>
