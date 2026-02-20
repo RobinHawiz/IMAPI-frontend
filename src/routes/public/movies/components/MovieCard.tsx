@@ -4,13 +4,13 @@ import missingPoster from "@images/missing-poster.png";
 
 function MovieCard({ title, releaseDate, posterPath }: MoviePageResult) {
   return (
-    <article className="shadow-elevation-medium bg-subtle/10 border-subtle/20 hover:[:has(a.movie-link:hover)]:border-accent/30 hover:[:has(a.movie-link:hover)]:bg-accent/2 [:has(a.movie-link:focus)]:bg-accent/2 [:has(a.movie-link:focus)]:border-accent/30 xs:w-full relative w-60 max-w-70 overflow-hidden rounded-2xl border border-solid backdrop-blur-lg transition-colors duration-200 ease-in-out">
+    <article className="shadow-elevation-medium bg-subtle/10 border-subtle/20 hover:[:has(a.movie-link:hover)]:border-accent/30 hover:[:has(a.movie-link:hover)]:bg-accent/2 [:has(a.movie-link:focus)]:bg-accent/2 [:has(a.movie-link:focus)]:border-accent/30 xs:w-full xs:max-w-70 relative max-w-60 overflow-hidden rounded-2xl border border-solid backdrop-blur-lg transition-colors duration-200 ease-in-out">
       <Link
         className="movie-link group block pb-6"
         aria-label={`View ${title} movie page`}
         to=""
       >
-        <div className="group-focus xs:h-91.25 relative h-80 overflow-hidden before:absolute before:top-0 before:z-10 before:block before:h-full before:w-full before:bg-transparent before:transition-all before:duration-200 before:ease-in-out group-hover:before:bg-black/30 group-focus:before:bg-black/30">
+        <div className="group-focus relative w-full overflow-hidden before:absolute before:top-0 before:z-10 before:block before:h-full before:w-full before:bg-transparent before:transition-all before:duration-200 before:ease-in-out group-hover:before:bg-black/30 group-focus:before:bg-black/30">
           <img
             className="h-full w-full object-cover transition-all duration-200 ease-in-out group-hover:scale-110 group-focus:scale-110"
             src={posterPath ? posterPath : missingPoster}
