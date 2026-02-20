@@ -12,7 +12,7 @@ function Footer() {
       <ul className="flex gap-4 sm:order-3">
         <li>
           <a
-            className="flex-center hover:border-accent/30 hover:bg-accent/5 hover:[&>svg]:fill-accent h-8 w-8 rounded-full border border-solid border-transparent bg-white/5 transition-colors duration-200"
+            className="flex-center focus-visible:[&>svg]:fill-accent focus-visible:border-accent/30 focus-visible:bg-accent/5 hover:border-accent/30 hover:bg-accent/5 hover:[&>svg]:fill-accent h-8 w-8 rounded-full border border-solid border-transparent bg-white/5 transition-colors duration-200 focus-visible:outline-none"
             href="#"
           >
             <svg
@@ -31,7 +31,7 @@ function Footer() {
         </li>
         <li>
           <a
-            className="flex-center hover:border-accent/30 hover:bg-accent/5 hover:[&>svg]:fill-accent h-8 w-8 rounded-full border border-solid border-transparent bg-white/5 transition-colors duration-200"
+            className="flex-center focus-visible:[&>svg]:fill-accent focus-visible:border-accent/30 focus-visible:bg-accent/5 hover:border-accent/30 hover:bg-accent/5 hover:[&>svg]:fill-accent h-8 w-8 rounded-full border border-solid border-transparent bg-white/5 transition-colors duration-200 focus-visible:outline-none"
             href="#"
           >
             <svg
@@ -50,7 +50,7 @@ function Footer() {
         </li>
         <li>
           <a
-            className="flex-center hover:border-accent/30 hover:bg-accent/5 hover:[&>svg]:fill-accent h-8 w-8 rounded-full border border-solid border-transparent bg-white/5 transition-colors duration-200"
+            className="flex-center focus-visible:[&>svg]:fill-accent focus-visible:border-accent/30 focus-visible:bg-accent/5 hover:border-accent/30 hover:bg-accent/5 hover:[&>svg]:fill-accent h-8 w-8 rounded-full border border-solid border-transparent bg-white/5 transition-colors duration-200 focus-visible:outline-none"
             href="#"
           >
             <svg
