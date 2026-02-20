@@ -33,7 +33,7 @@ function Search({ onSearch }: Props) {
         />
       </div>
       <button
-        className="shadow-accent-blur-low text-primary bg-accent hover:shadow-accent-blur-high hover:bg-accent-muted hidden cursor-pointer rounded-full px-6 py-4 text-base font-bold transition-all duration-200 sm:block"
+        className="shadow-accent-blur-low text-primary bg-accent focus-visible:shadow-accent-blur-high focus-visible:bg-accent-muted hover:shadow-accent-blur-high hover:bg-accent-muted hidden cursor-pointer rounded-full px-6 py-4 text-base font-bold transition-all duration-200 focus-visible:outline-none sm:block"
         type="submit"
       >
         Search
