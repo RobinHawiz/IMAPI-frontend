@@ -16,6 +16,7 @@
   --color-muted: hsl(219 14% 60%);
   --color-subtle: hsl(219 18% 38%);
   --color-footer: hsl(216, 16%, 6%);
+  --color-modal: hsl(222, 18%, 14%);
 
   /* Shadows */
   --shadow-color: 223deg 27% 1%;
