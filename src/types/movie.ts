@@ -6,7 +6,7 @@ export type MoviePage = {
 };
 
 export type MoviePageResult = {
-  id: number;
+  id: string;
   title: string;
   releaseDate: string;
   posterPath: string;

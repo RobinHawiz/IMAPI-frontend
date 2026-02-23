@@ -1,8 +1,24 @@
+import type { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import type { MoviePageResult } from "@customTypes/movie";
 import missingPoster from "@images/missing-poster.png";
 
-function MovieCard({ title, releaseDate, posterPath }: MoviePageResult) {
+type Props = MoviePageResult & {
+  setSelectedMovie: Dispatch<
+    SetStateAction<{
+      id: string;
+      title: string;
+    } | null>
+  >;
+};
+
+function MovieCard({
+  id,
+  title,
+  releaseDate,
+  posterPath,
+  setSelectedMovie,
+}: Props) {
   return (
     <article className="shadow-elevation-medium bg-subtle/10 border-subtle/20 hover:[:has(a.movie-link:hover)]:border-accent/30 hover:[:has(a.movie-link:hover)]:bg-accent/2 [:has(a.movie-link:focus)]:bg-accent/2 [:has(a.movie-link:focus)]:border-accent/30 xs:w-full xs:max-w-70 relative max-w-60 overflow-hidden rounded-2xl border border-solid backdrop-blur-lg transition-colors duration-200 ease-in-out">
       <Link
@@ -10,9 +26,9 @@ function MovieCard({ title, releaseDate, posterPath }: MoviePageResult) {
         aria-label={`View ${title} movie page`}
         to=""
       >
-        <div className="group-focus relative w-full overflow-hidden before:absolute before:top-0 before:z-10 before:block before:h-full before:w-full before:bg-transparent before:transition-all before:duration-200 before:ease-in-out group-hover:before:bg-black/30 group-focus:before:bg-black/30">
+        <div className="group-focus relative aspect-2/3 w-full overflow-hidden before:absolute before:top-0 before:z-10 before:block before:h-full before:w-full before:bg-transparent before:transition-all before:duration-200 before:ease-in-out group-hover:before:bg-black/30 group-focus:before:bg-black/30">
           <img
-            className="h-full w-full object-cover transition-all duration-200 ease-in-out group-hover:scale-110 group-focus:scale-110"
+            className="h-full w-full transition-all duration-200 ease-in-out group-hover:scale-110 group-focus:scale-110"
             src={posterPath ? posterPath : missingPoster}
             alt={`${title} poster`}
           />
@@ -33,13 +49,15 @@ function MovieCard({ title, releaseDate, posterPath }: MoviePageResult) {
       >
         Read reviews
       </Link>
-      <Link
-        className="text-accent hover:bg-accent hover:text-primary border-accent focus-visible:ring-accent focus-visible:ring-offset-primary absolute right-5 bottom-5 translate-y-1.25 rounded-full border border-solid px-4 py-1 text-sm font-semibold transition-all duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+      <button
+        className="text-accent hover:bg-accent hover:text-primary border-accent focus-visible:ring-accent focus-visible:ring-offset-primary absolute right-5 bottom-5 translate-y-1.25 cursor-pointer rounded-full border border-solid px-4 py-1 text-sm font-semibold transition-all duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
         aria-label={`Rate ${title}`}
-        to=""
+        onClick={() => {
+          setSelectedMovie({ id, title });
+        }}
       >
         Rate
-      </Link>
+      </button>
     </article>
   );
 }
