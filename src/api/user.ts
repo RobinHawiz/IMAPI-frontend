@@ -1,5 +1,6 @@
 import type { DomainError } from "@customTypes/error";
 import type { LoginCredentials, UserInfo } from "@customTypes/user";
+import delay from "@utils/delay";
 
 interface IUserApi {
   loginUser(cred: LoginCredentials): Promise<string>;
@@ -14,6 +15,9 @@ export class UserAPI implements IUserApi {
   }
 
   async loginUser(cred: LoginCredentials) {
+    // Simulate network delay
+    await delay(700);
+
     const response = await this.request(`${this.baseUrl}/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

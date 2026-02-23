@@ -1,7 +1,6 @@
 import z from "zod";
 
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-const loginFormSchema = z.object({
+export const loginFormSchema = z.object({
   username: z
     .string()
     .min(1, "Username must be between 1 and 50 characters.")
