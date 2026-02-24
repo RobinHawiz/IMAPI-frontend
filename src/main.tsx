@@ -28,6 +28,12 @@ const router = createBrowserRouter([
         lazy: () => import("@routes/public/sign-in/Page"),
         hydrateFallbackElement: <></>,
       },
+      {
+        path: "/sign-up",
+        index: true,
+        lazy: () => import("@routes/public/sign-up/Page"),
+        hydrateFallbackElement: <></>,
+      },
     ],
   },
 ]);

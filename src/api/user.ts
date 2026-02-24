@@ -1,10 +1,15 @@
 import type { DomainError } from "@customTypes/error";
-import type { LoginCredentials, UserInfo } from "@customTypes/user";
+import type {
+  LoginCredentials,
+  UserCreatePayload,
+  UserInfo,
+} from "@customTypes/user";
 import delay from "@utils/delay";
 
 interface IUserApi {
   loginUser(cred: LoginCredentials): Promise<string>;
   getUser(): Promise<UserInfo>;
+  createUser(user: UserCreatePayload): void;
 }
 
 export class UserAPI implements IUserApi {
@@ -35,6 +40,20 @@ export class UserAPI implements IUserApi {
     });
 
     return (await response.json()) as UserInfo;
+  }
+
+  async createUser(user: UserCreatePayload) {
+    // Simulate network delay
+    await delay(700);
+
+    const options: RequestInit = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    };
+    await this.request(`${this.baseUrl}/users/register`, options);
   }
 
   private async request(url: string, options: RequestInit = {}) {
