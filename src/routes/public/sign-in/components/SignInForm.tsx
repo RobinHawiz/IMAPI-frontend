@@ -47,7 +47,7 @@ function SignInForm() {
     <form
       id="submit-form"
       onSubmit={(e) => handleSubmit(e)}
-      className="bg-modal/85 border-subtle/60 flex w-full max-w-md flex-col gap-6 rounded-3xl border border-solid p-8 px-4"
+      className="bg-modal/85 border-subtle/60 flex w-full flex-col gap-6 rounded-3xl border border-solid p-8 px-4"
     >
       <div className="flex flex-col gap-2">
         <label className="self-start text-sm font-semibold" htmlFor="username">
@@ -110,7 +110,10 @@ function SignInForm() {
         </button>
         <p className="text-muted text-center text-sm">
           Don't have an account?{" "}
-          <NavLink to="/sign-up" className="text-accent">
+          <NavLink
+            to="/sign-up"
+            className="text-accent focus-visible:ring-accent focus-visible:ring-offset-primary rounded-2xl p-1 transition-all duration-200 ease-in-out hover:underline focus-visible:ring-2 focus-visible:outline-none"
+          >
             Sign up
           </NavLink>
         </p>
