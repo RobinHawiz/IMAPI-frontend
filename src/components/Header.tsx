@@ -1,10 +1,11 @@
 import { useAuth } from "@src/contexts/AuthProvider";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "@images/logo.svg";
 import profile from "@images/profile.svg";
 
 function Header() {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <header className="bg-primary/65 border-subtle/20 shadow-elevation-low fixed z-10 w-full border-b border-solid px-8 py-[1.2188rem] backdrop-blur-lg">
@@ -98,6 +99,7 @@ function Header() {
                 className="hover:text-secondary text-muted focus-visible:ring-accent focus-visible:ring-offset-primary cursor-pointer transition-all duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
                 onClick={() => {
                   logout();
+                  navigate("/");
                 }}
               >
                 Sign out
