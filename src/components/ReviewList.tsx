@@ -24,7 +24,7 @@ function ReviewList({ tmdbMovieId, movieTitle }: Props) {
   };
   return (
     <dialog id="read-reviews-modal" className="modal">
-      <div className="modal-box w-full max-w-3xl px-4 shadow-none">
+      <div className="modal-box w-full max-w-3xl px-2 shadow-none sm:px-4">
         <form method="dialog">
           <button
             className="focus-visible:border-accent border-subtle/60 xs:p-3 xs:top-13 xs:right-12 absolute top-10 right-8.5 z-10 cursor-pointer rounded-full border border-solid bg-white/5 p-2.5 transition-colors duration-200 ease-in-out hover:bg-white/10 focus-visible:outline-none"
@@ -38,7 +38,7 @@ function ReviewList({ tmdbMovieId, movieTitle }: Props) {
             />
           </button>
         </form>
-        <div className="bg-modal/85 xs:p-8 border-subtle/60 flex flex-col gap-6 rounded-3xl border border-solid p-4 backdrop-blur-lg">
+        <div className="bg-modal/85 xs:p-8 border-subtle/60 flex flex-col rounded-3xl border border-solid p-4 backdrop-blur-lg">
           <div>
             <div className="border-subtle/20 mb-2 border-b border-solid pb-2 sm:mb-4 sm:pb-4">
               <h2 className="text-2xl font-black md:text-3xl">
@@ -54,7 +54,7 @@ function ReviewList({ tmdbMovieId, movieTitle }: Props) {
                 </p>
               </div>
             ) : reviewList !== undefined && reviewList.length > 0 ? (
-              <ul className="">
+              <ul className="flex flex-col gap-4">
                 {reviewList.map((review) => (
                   <li key={review.id}>
                     <ReviewCard

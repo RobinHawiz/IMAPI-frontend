@@ -51,24 +51,30 @@ function ReviewCard({
 
   return (
     <article className="hover:shadow-elevation-low bg-subtle/10 border-subtle/20 hover:border-accent/30 hover:bg-accent/2 rounded-2xl border border-solid p-6 transition-all duration-300 ease-in-out hover:-translate-y-2">
-      <div className="mb-2.5 flex items-start justify-between">
+      <div className="mb-2.5 flex items-start justify-between gap-2">
         <div className="flex items-center gap-3">
-          <div className="flex-center bg-muted/65 h-10 w-10 rounded-full">
+          <div className="flex-center bg-muted/65 min-h-10 min-w-10 rounded-full">
             <img src={profile} className="h-4.5 w-4" alt="Your profile" />
           </div>
           <div>
-            <p className="leading-[1.2] font-semibold">{username}</p>
-            <p className="text-muted text-sm">{createdAt.split(" ")[0]}</p>
+            <p className="xs:text-base text-sm leading-[1.2] font-semibold wrap-anywhere">
+              {username}
+            </p>
+            <p className="text-muted xs:text-sm text-xs">
+              {createdAt.split(" ")[0]}
+            </p>
           </div>
         </div>
-        <div className="flex-center bg-accent/10 h-7 w-12 gap-1 rounded-sm">
+        <div className="flex-center bg-accent/10 min-h-7 min-w-12 gap-1 rounded-sm">
           <img src={star} className="h-3.5 w-3.5" aria-hidden="true" />
-          <p className="text-accent leading-[1.2] font-semibold">{rating}</p>
+          <p className="text-accent xs:text-base text-sm leading-[1.2] font-semibold">
+            {rating}
+          </p>
         </div>
       </div>
       <div className="border-subtle/20 mb-4.5 border-b border-solid pb-2.5">
-        <h3 className="mb-1 text-lg font-bold">{title}</h3>
-        <p>{reviewText}</p>
+        <h3 className="xs:text-lg mb-1 text-base font-bold">{title}</h3>
+        <p className="xs:text-base text-sm">{reviewText}</p>
       </div>
       <div>
         <button
@@ -87,7 +93,7 @@ function ReviewCard({
               className="fill-current"
             />
           </svg>
-          <p className="transition-colors duration-200 ease-in-out">
+          <p className="xs:text-base text-sm transition-colors duration-200 ease-in-out">
             {reviewLikes}
           </p>
         </button>
