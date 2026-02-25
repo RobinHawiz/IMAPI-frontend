@@ -4,6 +4,7 @@ import { moviePageQueryOptions } from "@hooks/queryOptions";
 import MovieCard from "@routes/public/movies/components/MovieCard";
 import WriteReview from "@components/WriteReview";
 import { useEffect, useState } from "react";
+import ReviewList from "@components/ReviewList";
 
 function MoviePage() {
   const [searchParams] = useSearchParams();
@@ -11,13 +12,26 @@ function MoviePage() {
     id: string;
     title: string;
   } | null>(null);
+  const [selectedMovieReview, setSelectedMovieReview] = useState<{
+    tmdbMovieId: string;
+    movieTitle: string;
+  } | null>(null);
   const query = searchParams.get("query") ?? "";
 
   const { data: moviePage, isFetching } = useQuery(
     moviePageQueryOptions(query),
   );
 
-  // Opens the review modal after a movie is selected for rating (from a MovieCard)
+  // Opens the modal for movie reviews after a movie is selected for viewing reviews (from a MovieCard)
+  useEffect(() => {
+    if (!selectedMovieReview) return;
+    const modal = document.getElementById(
+      "read-reviews-modal",
+    ) as HTMLDialogElement | null;
+    modal?.showModal();
+  }, [selectedMovieReview]);
+
+  // Opens the modal for writing reviews after a movie is selected for rating (from a MovieCard)
   useEffect(() => {
     if (!selectedMovie) return;
     const modal = document.getElementById(
@@ -49,6 +63,7 @@ function MoviePage() {
                   releaseDate={movie.releaseDate}
                   posterPath={movie.posterPath}
                   setSelectedMovie={setSelectedMovie}
+                  setSelectedMovieReview={setSelectedMovieReview}
                 />
               </li>
             ))}
@@ -59,6 +74,12 @@ function MoviePage() {
           </p>
         )}
       </div>
+      {selectedMovieReview !== null && (
+        <ReviewList
+          tmdbMovieId={selectedMovieReview.tmdbMovieId}
+          movieTitle={selectedMovieReview.movieTitle}
+        />
+      )}
       {selectedMovie !== null && (
         <WriteReview id={selectedMovie.id} title={selectedMovie.title} />
       )}

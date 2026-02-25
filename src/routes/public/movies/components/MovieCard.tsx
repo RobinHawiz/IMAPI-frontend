@@ -10,6 +10,12 @@ type Props = MoviePageResult & {
       title: string;
     } | null>
   >;
+  setSelectedMovieReview: Dispatch<
+    SetStateAction<{
+      tmdbMovieId: string;
+      movieTitle: string;
+    } | null>
+  >;
 };
 
 function MovieCard({
@@ -18,6 +24,7 @@ function MovieCard({
   releaseDate,
   posterPath,
   setSelectedMovie,
+  setSelectedMovieReview,
 }: Props) {
   return (
     <article className="shadow-elevation-medium bg-subtle/10 border-subtle/20 hover:[:has(a.movie-link:hover)]:border-accent/30 hover:[:has(a.movie-link:hover)]:bg-accent/2 [:has(a.movie-link:focus)]:bg-accent/2 [:has(a.movie-link:focus)]:border-accent/30 xs:w-full xs:max-w-70 relative max-w-60 overflow-hidden rounded-2xl border border-solid backdrop-blur-lg transition-colors duration-200 ease-in-out">
@@ -42,13 +49,15 @@ function MovieCard({
           </div>
         </div>
       </Link>
-      <Link
-        className="text-accent focus-visible:ring-accent focus-visible:ring-offset-primary rounded-2 absolute bottom-5 left-5 z-10 text-sm font-semibold transition-all duration-200 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+      <button
+        className="text-accent focus-visible:ring-accent focus-visible:ring-offset-primary rounded-2 absolute bottom-5 left-5 z-10 cursor-pointer text-sm font-semibold transition-all duration-200 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
         aria-label={`Read reviews for ${title}`}
-        to=""
+        onClick={() => {
+          setSelectedMovieReview({ tmdbMovieId: id, movieTitle: title });
+        }}
       >
         Read reviews
-      </Link>
+      </button>
       <button
         className="text-accent hover:bg-accent hover:text-primary border-accent focus-visible:ring-accent focus-visible:ring-offset-primary absolute right-5 bottom-5 translate-y-1.25 cursor-pointer rounded-full border border-solid px-4 py-1 text-sm font-semibold transition-all duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
         aria-label={`Rate ${title}`}

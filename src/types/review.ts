@@ -10,6 +10,7 @@ export type Review = {
   createdAt: string;
   username: string;
   likes: number;
+  likedByMe: 0 | 1;
 };
 
 export type ReviewCreatePayload = z.infer<typeof addReviewSchema>;
