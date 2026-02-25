@@ -83,7 +83,7 @@ function Header() {
             <li className="flex items-center">
               <div className="flex-center gap-2">
                 <div className="flex flex-col justify-center">
-                  <p className="mb-1 text-base leading-none">
+                  <p className="mb-1 self-end text-base leading-none">
                     {user.firstName} {user.lastName}
                   </p>
                   <p className="text-muted text-end text-sm leading-none">
