@@ -47,7 +47,7 @@ function SignInForm() {
     <form
       id="submit-form"
       onSubmit={(e) => handleSubmit(e)}
-      className="bg-modal/85 border-subtle/60 flex w-full flex-col gap-6 rounded-3xl border border-solid p-8 px-4"
+      className="bg-modal/85 border-subtle/60 shadow-elevation-medium flex w-full flex-col gap-6 rounded-3xl border border-solid p-8 px-4"
     >
       <div className="flex flex-col gap-2">
         <label className="self-start text-sm font-semibold" htmlFor="username">
