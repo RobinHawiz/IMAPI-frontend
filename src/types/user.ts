@@ -31,11 +31,14 @@ export const createUserFormSchema = z.object({
   username: z
     .string()
     .min(1, "Username must be between 1 and 50 characters.")
-    .max(50, "Username must be between 1 and 50 characters."),
+    .max(50, "Username must be between 1 and 50 characters.")
+    .regex(/^\S+$/, "Username cannot contain spaces."),
   password: z
     .string()
+
     .min(8, "Password must be between 8 and 100 characters.")
-    .max(100, "Password must be between 8 and 100 characters."),
+    .max(100, "Password must be between 8 and 100 characters.")
+    .regex(/^\S+$/, "Password cannot contain spaces."),
 });
 
 export type UserCreatePayload = z.infer<typeof createUserFormSchema>;
