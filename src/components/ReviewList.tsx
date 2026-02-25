@@ -8,7 +8,7 @@ type Props = {
   movieTitle: string;
 };
 
-function WriteReview({ tmdbMovieId, movieTitle }: Props) {
+function ReviewList({ tmdbMovieId, movieTitle }: Props) {
   const {
     data: reviewList,
     isFetching,
@@ -92,4 +92,4 @@ function WriteReview({ tmdbMovieId, movieTitle }: Props) {
   );
 }
 
-export default WriteReview;
+export default ReviewList;
