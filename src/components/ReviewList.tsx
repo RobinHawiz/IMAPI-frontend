@@ -34,7 +34,7 @@ function ReviewList({ tmdbMovieId, movieTitle }: Props) {
             <img
               src={close}
               className="xs:h-3 xs:w-3 h-2.5 w-2.5"
-              aria-disabled="true"
+              aria-hidden="true"
             />
           </button>
         </form>

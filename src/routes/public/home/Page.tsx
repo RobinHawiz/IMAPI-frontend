@@ -32,7 +32,7 @@ export function Component() {
         <div className="flex-center w-full flex-wrap gap-8">
           <article className="bg-subtle/5 shadow-elevation-low border-subtle/20 hover:border-accent/30 hover:bg-accent/2 flex w-full max-w-95 grow basis-62 items-center gap-4 rounded-3xl border border-solid p-8 transition-colors duration-200">
             <div className="bg-accent/20 flex-center h-16 w-16 rounded-2xl">
-              <img src={film} aria-disabled="true" />
+              <img src={film} aria-hidden="true" />
             </div>
             <div>
               <h3 className="text-2xl font-black tracking-wider md:text-3xl lg:text-4xl">
@@ -43,7 +43,7 @@ export function Component() {
           </article>
           <article className="bg-subtle/5 shadow-elevation-low border-subtle/20 hover:border-accent/30 hover:bg-accent/2 flex w-full max-w-95 grow basis-62 items-center gap-4 rounded-3xl border border-solid p-8 transition-colors duration-200">
             <div className="bg-accent/20 flex-center h-16 w-16 rounded-2xl">
-              <img src={star} aria-disabled="true" />
+              <img src={star} aria-hidden="true" />
             </div>
             <div>
               <h3 className="text-2xl font-black md:text-3xl lg:text-4xl">
@@ -54,7 +54,7 @@ export function Component() {
           </article>
           <article className="bg-subtle/5 shadow-elevation-low border-subtle/20 hover:border-accent/30 hover:bg-accent/2 flex w-full max-w-95 grow basis-62 items-center gap-4 rounded-3xl border border-solid p-8 transition-colors duration-200">
             <div className="bg-accent/20 flex-center h-16 w-16 rounded-2xl">
-              <img src={discussion} aria-disabled="true" />
+              <img src={discussion} aria-hidden="true" />
             </div>
             <div>
               <h3 className="text-2xl font-black tracking-wider md:text-3xl lg:text-4xl">

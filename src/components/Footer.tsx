@@ -4,7 +4,7 @@ function Footer() {
   return (
     <footer className="border-subtle/20 bg-footer flex flex-col items-center justify-center gap-4 border-t border-solid px-8 py-6 sm:flex-row sm:justify-between">
       <div className="sm:w-full sm:max-w-32">
-        <img src={logo} aria-disabled="true" />
+        <img src={logo} aria-hidden="true" />
       </div>
       <p className="text-muted order-3 text-center text-xs sm:order-2 sm:min-w-84">
         © 2026 IMAPI. All rights reserved. Data provided by TMDb.
