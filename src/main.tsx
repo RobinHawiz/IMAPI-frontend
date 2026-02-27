@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "@src/contexts/AuthProvider";
 import { queryClient } from "@src/queryClient";
 import App from "@src/App";
+import ProtectedRoute from "@components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,20 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         lazy: () => import("@routes/public/sign-up/Page"),
+        hydrateFallbackElement: <></>,
+      },
+    ],
+  },
+  {
+    element: (
+      <ProtectedRoute>
+        <App />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "/your-reviews",
+        lazy: () => import("@routes/protected/your-reviews/Page"),
         hydrateFallbackElement: <></>,
       },
     ],

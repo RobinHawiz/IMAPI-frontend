@@ -13,6 +13,7 @@ export function reviewAddMutationOptions() {
     onSuccess: (_data, review) => {
       queryClient.invalidateQueries({ queryKey: ["reviews"] });
       queryClient.setQueryData(["reviews", review.tmdbMovieId], { ...review });
+      queryClient.invalidateQueries({ queryKey: ["currentUserReviews"] });
     },
   });
 }
@@ -49,6 +50,14 @@ export function reviewListQueryOptions(tmdbMovieId: string) {
   return queryOptions({
     queryKey: ["reviews", tmdbMovieId],
     queryFn: () => reviewApi.getMovieReviews(tmdbMovieId),
+    throwOnError: true,
+  });
+}
+
+export function currentUserReviewListQueryOptions() {
+  return queryOptions({
+    queryKey: ["currentUserReviews"],
+    queryFn: () => reviewApi.getCurrentUserReviews(),
     throwOnError: true,
   });
 }

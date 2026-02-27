@@ -1,10 +1,15 @@
 import type { DomainError } from "@customTypes/error";
-import type { Review, ReviewCreatePayload } from "@customTypes/review";
+import type {
+  CurrentUserReview,
+  Review,
+  ReviewCreatePayload,
+} from "@customTypes/review";
 import delay from "@utils/delay";
 
 interface IReviewApi {
   createReview(review: ReviewCreatePayload): Promise<void>;
   getMovieReviews(tmdbMovieId: string): Promise<Array<Review>>;
+  getCurrentUserReviews(): Promise<Array<CurrentUserReview>>;
 }
 
 export class ReviewAPI implements IReviewApi {
@@ -32,6 +37,21 @@ export class ReviewAPI implements IReviewApi {
     );
 
     return (await response.json()) as Array<Review>;
+  }
+
+  async getCurrentUserReviews() {
+    // Simulate network delay
+    await delay(700);
+
+    const options: RequestInit = {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    };
+
+    const response = await this.request(`${this.baseUrl}/reviews/me`, options);
+
+    return (await response.json()) as Array<CurrentUserReview>;
   }
 
   async createReview(review: ReviewCreatePayload) {
