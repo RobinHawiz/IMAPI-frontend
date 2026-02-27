@@ -10,7 +10,7 @@ import {
   reviewLikeMutationOptions,
 } from "@hooks/queryOptions";
 
-type Props = Omit<Review, "tmdbMovieId">;
+type Props = Omit<Review, "tmdbMovieId" | "tmdbMovieTitle">;
 
 function ReviewCard({
   id,
