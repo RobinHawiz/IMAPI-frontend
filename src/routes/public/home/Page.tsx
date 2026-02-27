@@ -11,7 +11,9 @@ export function Component() {
   return (
     <>
       <section className="flex-center flex-col px-4 md:mt-15">
-        <img src={hero} aria-hidden="true" />
+        <div className="aspect-556/375 h-full max-h-93.75 w-full max-w-139">
+          <img src={hero} aria-hidden="true" />
+        </div>
         <h1 className="mb-4 text-center text-4xl font-black md:text-5xl md:leading-14 lg:text-6xl lg:leading-17">
           All the{" "}
           <span className="to-accent bg-linear-to-r from-[#fff95b] bg-clip-text text-transparent">
