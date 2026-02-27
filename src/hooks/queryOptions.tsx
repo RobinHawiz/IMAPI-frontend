@@ -17,6 +17,26 @@ export function reviewAddMutationOptions() {
   });
 }
 
+export function reviewLikeMutationOptions() {
+  return mutationOptions({
+    mutationFn: (reviewId: string) => reviewApi.likeReview(reviewId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["reviews"] });
+      queryClient.invalidateQueries({ queryKey: ["currentUserReviews"] });
+    },
+  });
+}
+
+export function reviewDislikeMutationOptions() {
+  return mutationOptions({
+    mutationFn: (reviewId: string) => reviewApi.dislikeReview(reviewId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["reviews"] });
+      queryClient.invalidateQueries({ queryKey: ["currentUserReviews"] });
+    },
+  });
+}
+
 export function moviePageQueryOptions(searchTerm: string) {
   return queryOptions({
     queryKey: ["movies", searchTerm],

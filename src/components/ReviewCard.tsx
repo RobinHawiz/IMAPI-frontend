@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "@contexts/AuthProvider";
-import { ReviewAPI } from "@api/review";
 import type { Review } from "@customTypes/review";
 import profile from "@images/profile.svg";
 import star from "@images/star.svg";
+import {
+  reviewDislikeMutationOptions,
+  reviewLikeMutationOptions,
+} from "@hooks/queryOptions";
 
 type Props = Omit<Review, "tmdbMovieId">;
 
@@ -18,7 +22,12 @@ function ReviewCard({
   likes,
   likedByMe,
 }: Props) {
-  const reviewApi = new ReviewAPI();
+  const { mutateAsync: likeReviewMutation } = useMutation(
+    reviewLikeMutationOptions(),
+  );
+  const { mutateAsync: dislikeReviewMutation } = useMutation(
+    reviewDislikeMutationOptions(),
+  );
   const [isLikedByMe, setIsLikedByMe] = useState(!!likedByMe);
   const [reviewLikes, setReviewLikes] = useState(likes);
   const navigate = useNavigate();
@@ -33,7 +42,7 @@ function ReviewCard({
     try {
       setReviewLikes(reviewLikes + 1);
       setIsLikedByMe(true);
-      await reviewApi.likeReview(id);
+      await likeReviewMutation(id);
     } catch (error) {
       console.log(error instanceof Error ? error.message : error);
     }
@@ -43,7 +52,7 @@ function ReviewCard({
     try {
       setReviewLikes(reviewLikes - 1);
       setIsLikedByMe(false);
-      await reviewApi.dislikeReview(id);
+      await dislikeReviewMutation(id);
     } catch (error) {
       console.log(error instanceof Error ? error.message : error);
     }
