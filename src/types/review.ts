@@ -4,6 +4,7 @@ export type Review = {
   id: string;
   userId: string;
   tmdbMovieId: string;
+  tmdbMovieTitle: string;
   title: string;
   reviewText: string;
   rating: number;
@@ -13,10 +14,13 @@ export type Review = {
   likedByMe: 0 | 1;
 };
 
+export type CurrentUserReview = Omit<Review, "likedByMe">;
+
 export type ReviewCreatePayload = z.infer<typeof addReviewSchema>;
 
 export const addReviewSchema = z.object({
   tmdbMovieId: z.string("The selected movie is not valid."),
+  tmdbMovieTitle: z.string("The selected movie is not valid."),
   title: z
     .string("Review title must be between 1 and 50 characters.")
     .min(1, "Review title must be between 1 and 50 characters.")

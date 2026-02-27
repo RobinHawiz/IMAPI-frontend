@@ -97,6 +97,7 @@ function WriteReview({ id, title }: Props) {
             </p>
           </div>
           <input type="hidden" value={id} name="tmdbMovieId" />
+          <input type="hidden" value={title} name="tmdbMovieTitle" />
           <div className="flex flex-col gap-1">
             <label
               className="self-start text-sm font-semibold sm:text-base"
