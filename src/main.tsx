@@ -18,19 +18,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/movies",
-        index: true,
         lazy: () => import("@routes/public/movies/Page"),
         hydrateFallbackElement: <></>,
       },
       {
         path: "/sign-in",
-        index: true,
         lazy: () => import("@routes/public/sign-in/Page"),
         hydrateFallbackElement: <></>,
       },
       {
         path: "/sign-up",
-        index: true,
         lazy: () => import("@routes/public/sign-up/Page"),
         hydrateFallbackElement: <></>,
       },
