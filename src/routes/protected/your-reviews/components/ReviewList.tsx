@@ -55,7 +55,8 @@ function ReviewList() {
           </ul>
         ) : (
           <p className="text-sm sm:text-base">
-            No reviews yet. Check back later or be the first to write one.
+            No reviews yet. Start sharing your thoughts on movies you've
+            watched!
           </p>
         )}
       </div>
