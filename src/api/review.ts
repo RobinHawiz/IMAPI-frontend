@@ -89,6 +89,19 @@ export class ReviewAPI implements IReviewApi {
     await this.request(`${this.baseUrl}/reviews/${review.id}/me`, options);
   }
 
+  async deleteReview(reviewId: string) {
+    // Simulate network delay
+    await delay(700);
+
+    const options: RequestInit = {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    };
+    await this.request(`${this.baseUrl}/reviews/${reviewId}/me`, options);
+  }
+
   async likeReview(reviewId: string) {
     const options: RequestInit = {
       method: "POST",
