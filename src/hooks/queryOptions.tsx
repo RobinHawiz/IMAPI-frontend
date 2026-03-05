@@ -82,6 +82,14 @@ export function reviewDislikeMutationOptions() {
   });
 }
 
+export function movieQueryOptions(tmdbMovieId: string) {
+  return queryOptions({
+    queryKey: ["movie", tmdbMovieId],
+    queryFn: ({ queryKey }) => movieApi.getMovie(queryKey[1]),
+    throwOnError: true,
+  });
+}
+
 export function moviePageQueryOptions(searchTerm: string) {
   return queryOptions({
     queryKey: ["movies", searchTerm],

@@ -8,7 +8,7 @@ function Header() {
   const navigate = useNavigate();
 
   return (
-    <header className="bg-primary/65 border-subtle/20 shadow-elevation-low fixed z-10 w-full border-b border-solid px-8 py-[1.2188rem] backdrop-blur-lg">
+    <header className="bg-primary/65 border-subtle/20 shadow-elevation-low fixed top-0 z-10 w-full border-b border-solid px-8 py-[1.2188rem] backdrop-blur-lg">
       <nav className="flex min-h-10 flex-col items-center justify-between gap-4 text-base font-medium md:flex-row">
         <ul className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2 md:gap-x-8">
           <li className="flex-center basis-full md:basis-auto">

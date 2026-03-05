@@ -31,7 +31,7 @@ function MovieCard({
       <Link
         className="movie-link group block pb-6"
         aria-label={`View ${title} movie page`}
-        to=""
+        to={`/movies/${id}`}
       >
         <div className="group-focus relative aspect-2/3 w-full overflow-hidden before:absolute before:top-0 before:z-10 before:block before:h-full before:w-full before:bg-transparent before:transition-all before:duration-200 before:ease-in-out group-hover:before:bg-black/30 group-focus:before:bg-black/30">
           <img

@@ -1,5 +1,5 @@
 import type { DomainError } from "@customTypes/error";
-import type { MoviePage } from "@customTypes/movie";
+import type { MovieResponse, MoviePage } from "@customTypes/movie";
 import delay from "@utils/delay";
 
 interface IMovieApi {
@@ -14,11 +14,23 @@ export class MovieAPI implements IMovieApi {
   }
 
   async getMovies(searchTerm: string) {
+    // Simulate network delay
+    await delay(700);
+
     const response = await this.request(
       `${this.baseUrl}/movies/search?query=${searchTerm}`,
     );
-    await delay(700);
     return (await response.json()) as MoviePage;
+  }
+
+  async getMovie(tmdbMovieId: string) {
+    // Simulate network delay
+    await delay(700);
+
+    const response = await this.request(
+      `${this.baseUrl}/movies/${tmdbMovieId}`,
+    );
+    return (await response.json()) as MovieResponse;
   }
 
   private async request(url: string, options: RequestInit = {}) {
