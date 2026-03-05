@@ -1,6 +1,9 @@
+import useDocumentTitle from "@hooks/useDocumentTitle";
 import SignUpForm from "@routes/public/sign-up/components/SignUpForm";
 
 export function Component() {
+  useDocumentTitle("IMAPI | Sign Up");
+
   return (
     <section className="xs:px-4 mx-auto mt-15 max-w-lg px-2">
       <h1 className="mb-3 text-center text-3xl font-black md:text-4xl lg:text-5xl">

@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { movieQueryOptions } from "@hooks/queryOptions";
+import useDocumentTitle from "@hooks/useDocumentTitle";
 import calendar from "@images/calendar.svg";
 import clock from "@images/clock.svg";
 import filmSmall from "@images/film-small.svg";
@@ -9,6 +10,8 @@ import halfStar from "@images/half-star.svg";
 import missingPoster from "@images/missing-poster.png";
 
 export function ErrorBoundary() {
+  useDocumentTitle("IMAPI | Movie Details");
+
   return (
     <h2 className="text-center text-red-500">
       Oops, something went wrong while loading the movie. Please try again in a
@@ -20,8 +23,7 @@ export function ErrorBoundary() {
 export function Component() {
   const { id: tmdbMovieId } = useParams<{ id: string }>();
   const { data: movie, isFetching } = useQuery(movieQueryOptions(tmdbMovieId!));
-
-  console.log(movie);
+  useDocumentTitle(`IMAPI | ${movie?.title || "Movie Details"}`);
 
   return (
     <section

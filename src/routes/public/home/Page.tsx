@@ -4,9 +4,11 @@ import hero from "@images/hero.webp";
 import film from "@images/film.svg";
 import star from "@images/star.svg";
 import discussion from "@images/discussion.svg";
+import useDocumentTitle from "@hooks/useDocumentTitle";
 
 export function Component() {
   const navigate = useNavigate();
+  useDocumentTitle("IMAPI | Home");
 
   return (
     <>
