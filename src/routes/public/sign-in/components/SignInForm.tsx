@@ -82,7 +82,7 @@ function SignInForm() {
         </label>
         <a
           href="#"
-          className="text-muted focus-visible:ring-accent focus-visible:ring-offset-primary rounded-2xl p-1 transition-all duration-200 ease-in-out focus-visible:ring-2 focus-visible:outline-none"
+          className="text-muted focus-visible:ring-accent focus-visible:ring-offset-primary rounded-2xl p-1 transition-all duration-200 ease-in-out hover:underline focus-visible:ring-2 focus-visible:outline-none"
         >
           Forgot password?
         </a>
