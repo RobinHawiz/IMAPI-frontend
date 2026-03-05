@@ -13,7 +13,7 @@ function Footer() {
         <li>
           <a
             className="flex-center focus-visible:[&>svg]:fill-accent focus-visible:border-accent/30 focus-visible:bg-accent/5 hover:border-accent/30 hover:bg-accent/5 hover:[&>svg]:fill-accent h-8 w-8 rounded-full border border-solid border-transparent bg-white/5 transition-colors duration-200 focus-visible:outline-none"
-            href="#"
+            href="https://www.youtube.com/watch?v=Vqbk9cDX0l0"
           >
             <svg
               className="fill-muted transition-colors duration-200"
@@ -32,7 +32,7 @@ function Footer() {
         <li>
           <a
             className="flex-center focus-visible:[&>svg]:fill-accent focus-visible:border-accent/30 focus-visible:bg-accent/5 hover:border-accent/30 hover:bg-accent/5 hover:[&>svg]:fill-accent h-8 w-8 rounded-full border border-solid border-transparent bg-white/5 transition-colors duration-200 focus-visible:outline-none"
-            href="#"
+            href="https://www.youtube.com/watch?v=Vqbk9cDX0l0"
           >
             <svg
               className="fill-muted transition-colors duration-200"
@@ -51,7 +51,7 @@ function Footer() {
         <li>
           <a
             className="flex-center focus-visible:[&>svg]:fill-accent focus-visible:border-accent/30 focus-visible:bg-accent/5 hover:border-accent/30 hover:bg-accent/5 hover:[&>svg]:fill-accent h-8 w-8 rounded-full border border-solid border-transparent bg-white/5 transition-colors duration-200 focus-visible:outline-none"
-            href="#"
+            href="https://www.youtube.com/watch?v=Vqbk9cDX0l0"
           >
             <svg
               className="fill-muted transition-colors duration-200"
