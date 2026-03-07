@@ -48,7 +48,7 @@ export function Component() {
             <img
               src={movie.posterPath ? movie.posterPath : missingPoster}
               alt={movie.title}
-              className="shadow-elevation-medium aspect-340/510 max-h-127.5 w-full max-w-85 rounded-2xl"
+              className="shadow-elevation-medium xs:max-h-127.5 xs:w-full xs:max-w-85 aspect-340/510 max-h-80 rounded-2xl"
             />
             <div className="flex w-full min-w-0 flex-col gap-5 md:min-w-107.5">
               <h1 className="text-secondary text-4xl font-black md:text-5xl md:leading-14 lg:text-6xl lg:leading-17">
@@ -73,13 +73,13 @@ export function Component() {
                   <p className="mb-px">{movie.genres.join(", ")}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-5">
+              <div className="flex items-center gap-2 sm:gap-5">
                 {movie.averageRating ? (
                   <div className="bg-modal/40 shadow-elevation-low hover:border-accent/30 hover:bg-accent/2 flex items-center gap-3 rounded-xl border border-solid border-white/5 px-4 py-3 backdrop-blur-lg transition-colors duration-200 ease-in-out">
                     <img src={star} aria-hidden="true" className="h-6" />
                     <div>
                       <p className="text-muted text-sm">
-                        <span className="text-secondary text-2xl font-bold">
+                        <span className="text-secondary text-xl font-bold sm:text-2xl">
                           {movie.averageRating.toFixed(1)}
                         </span>{" "}
                         /10
@@ -90,12 +90,16 @@ export function Component() {
                 ) : (
                   <div className="bg-modal/40 shadow-elevation-low hover:border-accent/30 hover:bg-accent/2 flex min-h-18.5 items-center gap-3 rounded-xl border border-solid border-white/5 px-4 py-3 backdrop-blur-lg transition-colors duration-200 ease-in-out">
                     <img src={halfStar} aria-hidden="true" className="h-6" />
-                    <p className="text-2xl font-bold">No ratings yet</p>
+                    <p className="text-xl font-bold sm:text-2xl">
+                      No ratings yet
+                    </p>
                   </div>
                 )}
                 <span className="h-10 w-px rounded-full bg-white/8"></span>
                 <div className="bg-modal/40 shadow-elevation-low hover:border-accent/30 hover:bg-accent/2 inline-flex flex-col rounded-xl border border-solid border-white/5 px-4 py-3 backdrop-blur-lg transition-colors duration-200 ease-in-out">
-                  <p className="text-2xl font-bold">{movie.reviewCount}</p>
+                  <p className="text-xl font-bold sm:text-2xl">
+                    {movie.reviewCount}
+                  </p>
                   <p className="text-muted text-xs">User Reviews</p>
                 </div>
               </div>
