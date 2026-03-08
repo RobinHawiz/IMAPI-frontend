@@ -12,12 +12,14 @@ type Props = Omit<CurrentUserReview, "userId" | "username"> & {
       reviewText: string;
       rating: number;
       movieTitle: string;
+      tmdbMovieId: string;
     } | null>
   >;
 };
 
 function ReviewCard({
   id,
+  tmdbMovieId,
   tmdbMovieTitle,
   title,
   reviewText,
@@ -27,7 +29,7 @@ function ReviewCard({
   setSelectedReview,
 }: Props) {
   const { mutateAsync: deleteReviewMutation, isPending: isLoading } =
-    useMutation(reviewDeleteMutationOptions());
+    useMutation(reviewDeleteMutationOptions(tmdbMovieId));
 
   const handleDelete = async () => {
     const confirmed = window.confirm(
@@ -115,6 +117,7 @@ function ReviewCard({
                     reviewText,
                     rating,
                     movieTitle: tmdbMovieTitle,
+                    tmdbMovieId,
                   })
                 }
               >

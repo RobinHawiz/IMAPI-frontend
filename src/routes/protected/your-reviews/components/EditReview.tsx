@@ -11,10 +11,12 @@ import close from "@images/close.svg";
 
 type Props = ReviewUpdatePayload & {
   movieTitle: string;
+  tmdbMovieId: string;
 };
 
 function EditReview({
   id,
+  tmdbMovieId,
   reviewTitle,
   reviewText,
   rating,
@@ -23,7 +25,7 @@ function EditReview({
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const { mutateAsync: editReviewMutation, isPending: isLoading } = useMutation(
-    reviewEditMutationOptions(),
+    reviewEditMutationOptions(tmdbMovieId),
   );
 
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {

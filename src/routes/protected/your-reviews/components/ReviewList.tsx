@@ -11,6 +11,7 @@ function ReviewList() {
     reviewText: string;
     rating: number;
     movieTitle: string;
+    tmdbMovieId: string;
   } | null>(null);
   const { data: reviewList, isFetching } = useQuery(
     currentUserReviewListQueryOptions(),
