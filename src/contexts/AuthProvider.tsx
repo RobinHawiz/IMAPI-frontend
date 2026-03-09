@@ -6,6 +6,7 @@ import {
   useState,
   type PropsWithChildren,
 } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { UserAPI } from "@api/user";
 import { AuthAPI } from "@api/auth";
 import type { LoginCredentials, UserInfo } from "@customTypes/user";
@@ -32,6 +33,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }: PropsWithChildren) {
+  const queryClient = useQueryClient();
   const [token, setToken] = useState<string | null>(() =>
     localStorage.getItem("token"),
   );
@@ -41,13 +43,17 @@ export function AuthProvider({ children }: PropsWithChildren) {
     const token = await userAPI.loginUser(cred);
     localStorage.setItem("token", token);
     setToken(token);
+    queryClient.invalidateQueries({ queryKey: ["reviews"] });
+    queryClient.invalidateQueries({ queryKey: ["currentUserReviews"] });
   };
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem("token");
     setToken(null);
     setUser(null);
-  };
+    queryClient.invalidateQueries({ queryKey: ["reviews"] });
+    queryClient.invalidateQueries({ queryKey: ["currentUserReviews"] });
+  }, [queryClient]);
 
   const checkToken = useCallback(async () => {
     if (!token) {
@@ -60,7 +66,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
     } catch {
       logout();
     }
-  }, [token]);
+  }, [token, logout]);
 
   useEffect(() => {
     if (token) {
