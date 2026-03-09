@@ -10,10 +10,11 @@ import {
   reviewLikeMutationOptions,
 } from "@hooks/queryOptions";
 
-type Props = Omit<Review, "tmdbMovieId" | "tmdbMovieTitle">;
+type Props = Omit<Review, "tmdbMovieTitle">;
 
 function ReviewCard({
   id,
+  tmdbMovieId,
   title,
   reviewText,
   rating,
@@ -23,10 +24,10 @@ function ReviewCard({
   likedByMe,
 }: Props) {
   const { mutateAsync: likeReviewMutation } = useMutation(
-    reviewLikeMutationOptions(),
+    reviewLikeMutationOptions(tmdbMovieId),
   );
   const { mutateAsync: dislikeReviewMutation } = useMutation(
-    reviewDislikeMutationOptions(),
+    reviewDislikeMutationOptions(tmdbMovieId),
   );
   const [isLikedByMe, setIsLikedByMe] = useState(!!likedByMe);
   const [reviewLikes, setReviewLikes] = useState(likes);

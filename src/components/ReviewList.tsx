@@ -9,11 +9,9 @@ type Props = {
 };
 
 function ReviewList({ tmdbMovieId, movieTitle }: Props) {
-  const {
-    data: reviewList,
-    isFetching,
-    isRefetching,
-  } = useQuery(reviewListQueryOptions(tmdbMovieId));
+  const { data: reviewList, isFetching } = useQuery(
+    reviewListQueryOptions(tmdbMovieId),
+  );
 
   const closeModal = () => {
     const modal = document.getElementById(
@@ -46,7 +44,7 @@ function ReviewList({ tmdbMovieId, movieTitle }: Props) {
               </h2>
               <p className="text-muted text-sm sm:text-base">{movieTitle}</p>
             </div>
-            {isFetching && !isRefetching ? (
+            {isFetching ? (
               <div className="flex-center mt-2 flex-col sm:mt-6 md:mt-8">
                 <span className="loading loading-spinner text-accent w-10 md:w-20"></span>
                 <p className="text-accent mt-5 block text-sm sm:text-base">
@@ -60,6 +58,7 @@ function ReviewList({ tmdbMovieId, movieTitle }: Props) {
                     <ReviewCard
                       id={review.id}
                       userId={review.userId}
+                      tmdbMovieId={tmdbMovieId}
                       title={review.title}
                       reviewText={review.reviewText}
                       rating={review.rating}

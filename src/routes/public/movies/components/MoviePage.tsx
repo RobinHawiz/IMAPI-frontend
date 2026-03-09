@@ -9,7 +9,7 @@ import ReviewList from "@components/ReviewList";
 function MoviePage() {
   const [searchParams] = useSearchParams();
   const [selectedMovie, setSelectedMovie] = useState<{
-    id: string;
+    tmdbMovieId: string;
     title: string;
   } | null>(null);
   const [selectedMovieReview, setSelectedMovieReview] = useState<{
@@ -81,7 +81,10 @@ function MoviePage() {
         />
       )}
       {selectedMovie !== null && (
-        <WriteReview id={selectedMovie.id} title={selectedMovie.title} />
+        <WriteReview
+          tmdbMovieId={selectedMovie.tmdbMovieId}
+          title={selectedMovie.title}
+        />
       )}
     </>
   );

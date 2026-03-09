@@ -7,15 +7,15 @@ import cancel from "@images/cancel.svg";
 import close from "@images/close.svg";
 
 type Props = {
-  id: string;
+  tmdbMovieId: string;
   title: string;
 };
 
-function WriteReview({ id, title }: Props) {
+function WriteReview({ tmdbMovieId, title }: Props) {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const { mutateAsync: addReviewMutation, isPending: isLoading } = useMutation(
-    reviewAddMutationOptions(),
+    reviewAddMutationOptions(tmdbMovieId),
   );
 
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
@@ -96,7 +96,7 @@ function WriteReview({ id, title }: Props) {
               Share your thoughts and help others discover great movies
             </p>
           </div>
-          <input type="hidden" value={id} name="tmdbMovieId" />
+          <input type="hidden" value={tmdbMovieId} name="tmdbMovieId" />
           <input type="hidden" value={title} name="tmdbMovieTitle" />
           <div className="flex flex-col gap-1">
             <label

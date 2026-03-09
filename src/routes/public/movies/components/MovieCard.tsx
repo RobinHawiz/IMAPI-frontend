@@ -6,7 +6,7 @@ import missingPoster from "@images/missing-poster.png";
 type Props = MoviePageResult & {
   setSelectedMovie: Dispatch<
     SetStateAction<{
-      id: string;
+      tmdbMovieId: string;
       title: string;
     } | null>
   >;
@@ -62,7 +62,7 @@ function MovieCard({
         className="text-accent hover:bg-accent hover:text-primary border-accent focus-visible:ring-accent focus-visible:ring-offset-primary absolute right-5 bottom-5 translate-y-1.25 cursor-pointer rounded-full border border-solid px-4 py-1 text-sm font-semibold transition-all duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
         aria-label={`Rate ${title}`}
         onClick={() => {
-          setSelectedMovie({ id, title });
+          setSelectedMovie({ tmdbMovieId: id, title });
         }}
       >
         Rate

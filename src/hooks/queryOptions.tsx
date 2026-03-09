@@ -4,6 +4,7 @@ import { MovieAPI } from "@api/movie";
 import { ReviewAPI } from "@api/review";
 import type {
   CurrentUserReview,
+  Review,
   ReviewCreatePayload,
   ReviewUpdatePayload,
 } from "@customTypes/review";
@@ -11,11 +12,13 @@ import type {
 const movieApi = new MovieAPI();
 const reviewApi = new ReviewAPI();
 
-export function reviewAddMutationOptions() {
+export function reviewAddMutationOptions(tmdbMovieId: string) {
   return mutationOptions({
     mutationFn: (review: ReviewCreatePayload) => reviewApi.createReview(review),
     onSuccess: (_data, review) => {
-      queryClient.invalidateQueries({ queryKey: ["reviews"] });
+      queryClient.invalidateQueries({
+        queryKey: ["reviews", String(tmdbMovieId)],
+      });
       queryClient.invalidateQueries({
         queryKey: ["movie", String(review.tmdbMovieId)],
       });
@@ -28,7 +31,7 @@ export function reviewEditMutationOptions(tmdbMovieId: string) {
   return mutationOptions({
     mutationFn: (review: ReviewUpdatePayload) => reviewApi.updateReview(review),
     onSuccess: (_data, review) => {
-      queryClient.invalidateQueries({ queryKey: ["reviews"] });
+      queryClient.invalidateQueries({ queryKey: ["reviews", tmdbMovieId] });
       queryClient.invalidateQueries({ queryKey: ["movie", tmdbMovieId] });
       queryClient.setQueryData<Array<CurrentUserReview>>(
         ["currentUserReviews"],
@@ -54,8 +57,14 @@ export function reviewDeleteMutationOptions(tmdbMovieId: string) {
   return mutationOptions({
     mutationFn: (reviewId: string) => reviewApi.deleteReview(reviewId),
     onSuccess: (_data, reviewId) => {
-      queryClient.invalidateQueries({ queryKey: ["reviews"] });
       queryClient.invalidateQueries({ queryKey: ["movie", tmdbMovieId] });
+      queryClient.setQueryData<Array<Review>>(
+        ["reviews", tmdbMovieId],
+        (oldData) => {
+          if (!oldData) return [];
+          return oldData.filter((r) => r.id !== reviewId);
+        },
+      );
       queryClient.setQueryData<Array<CurrentUserReview>>(
         ["currentUserReviews"],
         (oldData) => {
@@ -67,22 +76,76 @@ export function reviewDeleteMutationOptions(tmdbMovieId: string) {
   });
 }
 
-export function reviewLikeMutationOptions() {
+export function reviewLikeMutationOptions(tmdbMovieId: string) {
   return mutationOptions({
     mutationFn: (reviewId: string) => reviewApi.likeReview(reviewId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["reviews"] });
-      queryClient.invalidateQueries({ queryKey: ["currentUserReviews"] });
+    onSuccess: (_data, reviewId) => {
+      queryClient.setQueryData<Array<Review>>(
+        ["reviews", String(tmdbMovieId)],
+        (oldData) => {
+          if (!oldData) return [];
+          return oldData.map((r) => {
+            if (r.id === reviewId) {
+              return {
+                ...r,
+                likes: ++r.likes,
+                likedByMe: 1,
+              };
+            } else return r;
+          });
+        },
+      );
+      queryClient.setQueryData<Array<CurrentUserReview>>(
+        ["currentUserReviews"],
+        (oldData) => {
+          if (!oldData) return [];
+          return oldData.map((r) => {
+            if (r.id === reviewId) {
+              return {
+                ...r,
+                likes: ++r.likes,
+              };
+            } else return r;
+          });
+        },
+      );
     },
   });
 }
 
-export function reviewDislikeMutationOptions() {
+export function reviewDislikeMutationOptions(tmdbMovieId: string) {
   return mutationOptions({
     mutationFn: (reviewId: string) => reviewApi.dislikeReview(reviewId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["reviews"] });
-      queryClient.invalidateQueries({ queryKey: ["currentUserReviews"] });
+    onSuccess: (_data, reviewId) => {
+      queryClient.setQueryData<Array<Review>>(
+        ["reviews", String(tmdbMovieId)],
+        (oldData) => {
+          if (!oldData) return [];
+          return oldData.map((r) => {
+            if (r.id === reviewId) {
+              return {
+                ...r,
+                likes: --r.likes,
+                likedByMe: 0,
+              };
+            } else return r;
+          });
+        },
+      );
+      queryClient.setQueryData<Array<CurrentUserReview>>(
+        ["currentUserReviews"],
+        (oldData) => {
+          if (!oldData) return [];
+          return oldData.map((r) => {
+            if (r.id === reviewId) {
+              return {
+                ...r,
+                likes: --r.likes,
+              };
+            } else return r;
+          });
+        },
+      );
     },
   });
 }
@@ -105,7 +168,7 @@ export function moviePageQueryOptions(searchTerm: string) {
 
 export function reviewListQueryOptions(tmdbMovieId: string) {
   return queryOptions({
-    queryKey: ["reviews", tmdbMovieId],
+    queryKey: ["reviews", String(tmdbMovieId)],
     queryFn: () => reviewApi.getMovieReviews(tmdbMovieId),
     throwOnError: true,
   });
