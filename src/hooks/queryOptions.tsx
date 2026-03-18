@@ -95,20 +95,7 @@ export function reviewLikeMutationOptions(tmdbMovieId: string) {
           });
         },
       );
-      queryClient.setQueryData<Array<CurrentUserReview>>(
-        ["currentUserReviews"],
-        (oldData) => {
-          if (!oldData) return [];
-          return oldData.map((r) => {
-            if (r.id === reviewId) {
-              return {
-                ...r,
-                likes: ++r.likes,
-              };
-            } else return r;
-          });
-        },
-      );
+      queryClient.invalidateQueries({ queryKey: ["currentUserReviews"] });
     },
   });
 }
@@ -132,20 +119,7 @@ export function reviewDislikeMutationOptions(tmdbMovieId: string) {
           });
         },
       );
-      queryClient.setQueryData<Array<CurrentUserReview>>(
-        ["currentUserReviews"],
-        (oldData) => {
-          if (!oldData) return [];
-          return oldData.map((r) => {
-            if (r.id === reviewId) {
-              return {
-                ...r,
-                likes: --r.likes,
-              };
-            } else return r;
-          });
-        },
-      );
+      queryClient.invalidateQueries({ queryKey: ["currentUserReviews"] });
     },
   });
 }

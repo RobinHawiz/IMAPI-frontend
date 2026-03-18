@@ -43,16 +43,16 @@ export function AuthProvider({ children }: PropsWithChildren) {
     const token = await userAPI.loginUser(cred);
     localStorage.setItem("token", token);
     setToken(token);
-    queryClient.invalidateQueries({ queryKey: ["reviews"] });
-    queryClient.invalidateQueries({ queryKey: ["currentUserReviews"] });
+    queryClient.removeQueries({ queryKey: ["reviews"] });
+    queryClient.removeQueries({ queryKey: ["currentUserReviews"] });
   };
 
   const logout = useCallback(() => {
     localStorage.removeItem("token");
     setToken(null);
     setUser(null);
-    queryClient.invalidateQueries({ queryKey: ["reviews"] });
-    queryClient.invalidateQueries({ queryKey: ["currentUserReviews"] });
+    queryClient.removeQueries({ queryKey: ["reviews"] });
+    queryClient.removeQueries({ queryKey: ["currentUserReviews"] });
   }, [queryClient]);
 
   const checkToken = useCallback(async () => {
