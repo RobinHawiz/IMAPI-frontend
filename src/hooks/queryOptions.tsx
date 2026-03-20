@@ -58,13 +58,7 @@ export function reviewDeleteMutationOptions(tmdbMovieId: string) {
     mutationFn: (reviewId: string) => reviewApi.deleteReview(reviewId),
     onSuccess: (_data, reviewId) => {
       queryClient.invalidateQueries({ queryKey: ["movie", tmdbMovieId] });
-      queryClient.setQueryData<Array<Review>>(
-        ["reviews", tmdbMovieId],
-        (oldData) => {
-          if (!oldData) return [];
-          return oldData.filter((r) => r.id !== reviewId);
-        },
-      );
+      queryClient.invalidateQueries({ queryKey: ["reviews", tmdbMovieId] });
       queryClient.setQueryData<Array<CurrentUserReview>>(
         ["currentUserReviews"],
         (oldData) => {
